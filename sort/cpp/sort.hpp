@@ -11,27 +11,45 @@ public:
     vec[right] = tmp;
   }
 };
-
+/**
+ * Worst case:
+ * Average:
+ **/
 template <class T>
 class SelectionSort : public Sort<T> {
 public:
   virtual bool sort(std::vector<T>& vec, int32_t low, int32_t high);
 };
-
+/**
+ * Worst case:
+ * Average:
+ **/
 template <class T>
 class InsertionSort : public Sort<T> {
 public:
   virtual bool sort(std::vector<T>& vec, int32_t low, int32_t high);
 };
-
+/**
+ * Merge sort
+ * 
+ * Worst case: O(n log n)
+ * Average: O(n log n)
+ * Space: О(n)
+ **/
 template <class T>
 class MergeSort : public Sort<T> {
 public:
   virtual bool sort(std::vector<T>& vec, int32_t low, int32_t high);
 private:
-  int32_t merge(std::vector<T>& vec, int32_t low, int32_t high);  
+  void merge(std::vector<T>& vec, int32_t low, const int32_t mid, int32_t high);  
 };
-
+/**
+ * Quick sort
+ * 
+ * Worst case: O(n2)
+ * Average: O(n log n)
+ * Space: О(n)
+ **/
 template <class T>
 class QuickSort : public Sort<T> {
 public:
