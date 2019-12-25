@@ -4,9 +4,9 @@ CXX=g++
 all: libsort.so main
 
 main: main.cpp
-	$(CXX) $^ -lsort -I./ -L./ -o $@
+	$(CXX) $^ --std=c++11 -g -lsort -I./ -L./ -o $@
 libsort.so: sort.cpp
-	$(CXX) $^ -shared -o $@
+	$(CXX) $^ --std=c++11 -g -fPIC -shared -o $@
 clean:
 	rm -f main
 	rm -f libsort.so
