@@ -1,7 +1,7 @@
 all: sort
 
 sort: sort.go
-	go build -o $@ $^
+	go build $^
 
 clean:
 	rm -f sort
