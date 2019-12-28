@@ -38,9 +38,10 @@ class MergeSort {
         if(high <= low) {
             return;
         }
-        let mid = low + (high - low) / 2;
+        const mid = Math.floor(low + (high - low) / 2);
         this.sort(array, low, mid);
         this.sort(array, mid + 1, high);
+
         this.merge(array, low, mid, high);
     }
 
@@ -52,8 +53,8 @@ class MergeSort {
         let j = 0;
         let k = low;
 
-        let left = new Array();
-        let right = new Array();
+        let left = new Array(leftHalfSize);
+        let right = new Array(rightHalfSize);
 
         for (i = 0; i < leftHalfSize; i++) {
             left[i] = array[low + i]; 
@@ -95,14 +96,27 @@ class QuickSort {
         if(high <= low) {
             return
         }
-
-        let part = this.partition(array, low, high)
-        this.sort(array, low, this.partition);
-        this.sort(array, this.partition + 1, high);
+        const part = this.partition(array, low, high)
+        this.sort(array, low, part);
+        this.sort(array, part + 1, high);
     }
 
     partition(array, low, high) {
-        
+        let i = low;
+        let j = high + 1;
+        const tmp = array[low];
+        while(true) {
+            while(array[++i] < tmp) { 
+                if(i == high) { break; }
+            }
+            while(tmp < array[--j]) {
+                if(j == low) { break; }
+            }
+            if(i >= j) { break; }
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        [array[low], array[j]] = [array[j], array[low]];
+        return j;
     }
 }
 
@@ -144,7 +158,7 @@ let main = function() {
     let mergeSort = new MergeSort();
     testSort(mergeSort, "MERGE", true);
     let quickSort = new QuickSort();
-    //testSort(quickSort, "QUICK", true);
+    testSort(quickSort, "QUICK", true);
 }
 
 if (typeof require !== 'undefined' && require.main === module) {
